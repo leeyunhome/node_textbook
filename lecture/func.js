@@ -3,6 +3,7 @@
 
 const { odd, even } = require("./var");
 
+console.time('hi')
 function checkOddOrEven(number) {
   if (number % 2) {
     return odd;
@@ -10,6 +11,14 @@ function checkOddOrEven(number) {
 
   return even;
 }
+console.timeEnd('hi')
 
-console.log(checkOddOrEven(2));
-console.log(checkOddOrEven(3));
+// console.log(checkOddOrEven(2));
+// console.log(checkOddOrEven(3));
+
+module.exports = checkOddOrEven;
+// module.exports = {
+//   checkOddOrEven,
+//   odd,
+//   even,
+// };
