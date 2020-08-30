@@ -12,6 +12,23 @@ const app = express();
 app.set("port", process.env.PORT || 3000);
 
 app.use(morgan("dev"));
+app.get('/some/path', (req, res) => {
+  let child = spawn(
+    'a.exe'
+  );
+  child.stdout.on('data', function (data) {
+console.log('stdout: ' + data);
+});
+
+child.stderr.on('data', function (data) {
+console.log('stderr: ' + data);
+});
+
+  // etc (rest of the code you wrote)
+
+  // response. You can modify this to send a custom response to your client
+  res.send('');
+})
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,6 +48,7 @@ app.use(
 
 const multer = require("multer");
 const fs = require("fs");
+const spawn = require('child_process').spawn;
 
 try {
   fs.readdirSync("uploads");
