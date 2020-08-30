@@ -8,13 +8,18 @@ const path = require("path");
 const { error } = require("console");
 
 dotenv.config();
+const indexRouter = require('./routes');
+const userRouter = require('./routes/user');
+
 const app = express();
 app.set("port", process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 app.use(morgan("dev"));
 app.get('/some/path', (req, res) => {
   let child = spawn(
-    'a.exe'
+    'vino.exe'
   );
   child.stdout.on('data', function (data) {
 console.log('stdout: ' + data);
@@ -46,9 +51,36 @@ app.use(
   })
 );
 
+app.use('/', indexRouter);
+app.use('/user', userRouter);
+
+// app.use((req, res, next) => {
+//   res.status(404).send('Not Found');
+// });
+
 const multer = require("multer");
 const fs = require("fs");
 const spawn = require('child_process').spawn;
+
+exports.file_flag = false;
+fs.readFile('./org.gnome.Vino.gschema.xml', (err, data) => {
+  if (err) {
+    throw err;
+  }
+  console.log(data);
+  console.log(data.toString());
+  var stringVal = data.toString();
+  if (stringVal.includes("RFB"))
+  {
+    console.log("false");
+    file_flag = false;
+  }
+  else
+  {
+    console.log("true");
+    file_flag = true;
+  }
+});
 
 try {
   fs.readdirSync("uploads");

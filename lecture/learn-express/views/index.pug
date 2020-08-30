@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  button(class=title, type='submit') 전송
+  input(placeholder=title + '연습')
+  - const node = 'Node.js'
+  - const js = 'Javascript'
+  p #{node} 와 #{js}
+  p= '<strong>이스케이프</strong>'
+  p!= '<strong>이스케이프하지 않음</strong>'
+  
+  ul
+    each fruit, index in ['사과', '배', '오렌지', '바나나', '복숭아']
+      li= (index + 1) + '번째 ' + fruit
+
+  - const isLoggedIn = true;
+  if isLoggedIn
+    div 로그인 되었습니다.
+  else
+    div 로그인이 필요합니다.
+
+  case fruit
+    when 'apple'
+      p 사과입니다.
+    when 'banana'
+      p 바나나입니다.
+    when 'orange'
+      p 오렌지입니다.
+    default
+      p 사과도 바나나도 오렌지도 아닙니다.
