@@ -1,16 +1,18 @@
-// const { odd, even } = require("./var");
-// const checkNumber = require("./func");
+// import { odd, even } from "./var";
 
-// function checkStringOddOrEven(str) {
-//     if (str.length % 2) {
-//         return odd;
-//     } else {
-//         return even;
-//     }
-// }
+const { odd, even } = require("./var");
+const checkNumber = require("./func");
 
-// console.log(checkNumber(10));
-// console.log(checkStringOddOrEven('hello'));
-module.exports = () => {
-    return 'hello package';
-};
+function checkStringOddOrEven(str) {
+  if (str.length % 2) {
+    return odd;
+  } else {
+    return even;
+  }
+}
+
+console.log(checkNumber(10));
+console.log(checkStringOddOrEven("hello"));
+// module.exports = () => {
+//     return 'hello package';
+// };
